@@ -63,8 +63,10 @@ jobs:
             exit 0
           fi
 
+          set +e
           coincidencias=$(grep -o -F -f privados.txt metrics.header.svg metrics.languages.svg)
           estado=$?
+          set -e
 
           if [ "$estado" -eq 0 ]; then
             echo "ERROR: se detectaron nombres de repositorios privados en los SVG publicados:"
