@@ -1,7 +1,7 @@
 <h1 align="center">Alvaro Bunster</h1>
 
 <p align="center">
-  Full-stack developer — Next.js, WordPress y la infraestructura Linux debajo.
+  Full-stack developer — Next.js, TypeScript y la infraestructura Linux debajo.
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@
 
 - Plataformas web y aplicaciones internas en **Next.js** y **TypeScript**.
 - Administración de un servidor multi-sitio: ~20 vhosts **nginx**, aplicaciones
-  Node y **WordPress** sobre PHP 8.4, despliegues en **Docker**.
+  Node y PHP 8.4, despliegues en **Docker**.
 - Automatización e integraciones: bots, scraping y sincronización entre servicios.
 
 ## Stack
@@ -45,7 +45,6 @@
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Node.js](https://img.shields.io/badge/Node.js-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![WordPress](https://img.shields.io/badge/WordPress-21759B?style=for-the-badge&logo=wordpress&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
 **Infraestructura**
