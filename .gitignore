@@ -1,0 +1,4 @@
+# Assets generados por las Actions — viven en la rama output, nunca en main
+dist/
+*.svg
+*.gif
