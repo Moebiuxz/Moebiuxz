@@ -37,6 +37,7 @@ jobs:
           config_timezone: America/Santiago
           base: ""
           repositories_affiliations: owner, collaborator
+          repositories_batch: 50
           plugin_languages: yes
           plugin_languages_limit: 8
           plugin_languages_sections: most-used
