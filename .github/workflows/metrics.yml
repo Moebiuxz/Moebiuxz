@@ -22,6 +22,8 @@ jobs:
           committer_branch: output
           committer_message: "chore: actualizar métricas (cabecera)"
           config_timezone: America/Santiago
+          # Fijar `base` explícitamente suprime los módulos `activity` y `repositories`,
+          # que listarían nombres de repositorios privados. No modificar.
           base: header
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
@@ -35,6 +37,8 @@ jobs:
           committer_branch: output
           committer_message: "chore: actualizar métricas (lenguajes)"
           config_timezone: America/Santiago
+          # Fijar `base` explícitamente suprime los módulos `activity` y `repositories`,
+          # que listarían nombres de repositorios privados. No modificar.
           base: ""
           repositories_affiliations: owner, collaborator
           repositories_batch: 50
@@ -44,3 +48,35 @@ jobs:
           plugin_languages_details: percentage
           plugin_languages_indepth: no
           plugin_languages_ignored: html, css, scss, dockerfile, makefile, blade, hack
+
+      - name: Auditoría anti-filtración de repositorios privados
+        run: |
+          set -uo pipefail
+
+          curl -sSL -o metrics.header.svg "https://raw.githubusercontent.com/Moebiuxz/Moebiuxz/output/metrics.header.svg"
+          curl -sSL -o metrics.languages.svg "https://raw.githubusercontent.com/Moebiuxz/Moebiuxz/output/metrics.languages.svg"
+
+          gh repo list Moebiuxz --limit 200 --visibility private --json name --jq '.[].name' > privados.txt
+
+          if [ ! -s privados.txt ]; then
+            echo "No se encontraron repositorios privados que auditar; nada que verificar."
+            exit 0
+          fi
+
+          coincidencias=$(grep -o -F -f privados.txt metrics.header.svg metrics.languages.svg)
+          estado=$?
+
+          if [ "$estado" -eq 0 ]; then
+            echo "ERROR: se detectaron nombres de repositorios privados en los SVG publicados:"
+            echo "$coincidencias"
+            echo "Revisa el campo 'base' de este workflow: algún módulo que lista repositorios quedó activo."
+            exit 1
+          elif [ "$estado" -eq 1 ]; then
+            echo "Auditoría correcta: ningún nombre de repositorio privado apareció en los SVG publicados."
+            exit 0
+          else
+            echo "ERROR: grep falló de forma inesperada (código $estado)."
+            exit 1
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.METRICS_TOKEN }}
