@@ -73,8 +73,6 @@
   </tr>
 </table>
 
-<sub>La distribución de lenguajes se calcula sobre una muestra de repositorios, no sobre la totalidad.</sub>
-
 ## Proyectos públicos
 
 | Proyecto | Qué hace | |
