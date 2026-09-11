@@ -1,7 +1,7 @@
 <h1 align="center">Álvaro Bunster</h1>
 
 <p align="center">
-  Full-stack developer — Next.js, TypeScript y la infraestructura Linux debajo.
+  Full-stack developer.
 </p>
 
 <p align="center">
